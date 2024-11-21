@@ -1,0 +1,22 @@
+<!-- templates/admin_dashboard.html -->
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ title }}</h2>
+
+    <div class="d-flex flex-column align-items-center">
+        <button class="btn btn-primary my-3" onclick="window.location.href='/faculty_register'">
+            Register Faculty
+        </button>
+        <button class="btn btn-secondary my-3" onclick="window.location.href='/discipline_incharge_register'">
+            Register Discipline Incharge
+        </button>
+        <button class="btn btn-success my-3" onclick="window.location.href='/hod_register'">
+            Register HOD
+        </button>
+        <button class="btn btn-info my-3" onclick="window.location.href='/principal_register'">
+            Register Principal
+        </button>
+    </div>
+</div>
+{% endblock %}

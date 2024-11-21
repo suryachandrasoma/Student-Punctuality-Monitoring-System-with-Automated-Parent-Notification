@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HOD Dashboard - {{ hod_name }}</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-4">
+        <h2 class="text-center">HOD Dashboard - {{ hod_name }} ({{ department }})</h2>
+        <h5 class="text-center">Date: {{ selected_date }}</h5>
+        
+        <!-- Form for selecting a date -->
+        <div class="text-right mb-3">
+            <form method="POST" class="form-inline justify-content-center">
+                <label for="date" class="mr-2">Select Date:</label>
+                <input type="date" id="date" name="date" class="form-control mr-2" value="{{ selected_date }}">
+                <button type="submit" class="btn btn-primary">View</button>
+            </form>
+        </div>
+
+        <div class="row">
+            {% for year, sections in attendance_summary.items() %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        <div class="card-header bg-info text-white">
+                            Year {{ year }}
+                        </div>
+                        <div class="card-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                    <tr>
+                                        <th>Section</th>
+                                        <th>Late Count</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {% for section, count in sections.items() %}
+                                        <tr>
+                                            <td>{{ section }}</td>
+                                            <td>
+                                                <a href="#" data-toggle="modal" data-target="#studentsModal{{ year }}{{ section }}">
+                                                    {{ count }}
+                                                </a>
+                                            </td>
+                                        </tr>
+
+                                        <!-- Modal to display student details -->
+                                        <div class="modal fade" id="studentsModal{{ year }}{{ section }}" tabindex="-1" aria-labelledby="studentsModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog">
+                                                <div class="modal-content">
+                                                    <div class="modal-header">
+                                                        <h5 class="modal-title" id="studentsModalLabel">Late Students - Year {{ year }} Section {{ section }}</h5>
+                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                        </button>
+                                                    </div>
+                                                    <div class="modal-body">
+                                                        <ul class="list-group">
+                                                            {% for student in late_students_detail[year][section] %}
+                                                                <li class="list-group-item">
+                                                                    Roll No: {{ student.roll_no }}, Name: {{ student.name }}
+                                                                </li>
+                                                            {% endfor %}
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endfor %}
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

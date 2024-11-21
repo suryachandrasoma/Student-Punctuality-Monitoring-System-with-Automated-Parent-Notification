@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Our Attendance System</title>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .hero-section {
+            background-image: url('https://images.unsplash.com/photo-1523978591478-c753949ff840?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 60px 20px;
+            text-align: center;
+        }
+        .motto {
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
+        }
+        .login-section {
+            margin-top: 30px;
+        }
+        .login-box {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            margin: 15px;
+        }
+        .login-title {
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+        @media (max-width: 768px) {
+            .login-box {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero-section">
+        <h1 class="display-4">Welcome to Our Attendance System</h1>
+        <p class="motto">"Time is precious – Be on time, every time!"</p>
+    </div>
+
+    <div class="container login-section">
+        <div class="row">
+            <!-- Student Login -->
+            <div class="col-md-6">
+                <div class="login-box text-center">
+                    <h2 class="login-title">Student Login</h2>
+                    <p class="text-muted">Access your attendance and stay punctual!</p>
+                    <a href="{{ url_for('student_login') }}" class="btn btn-primary btn-block">Student Login</a>
+                </div>
+            </div>
+
+            <!-- Other Roles Login -->
+            <div class="col-md-6">
+                <div class="login-box text-center">
+                    <h2 class="login-title">Admin Login</h2>
+                    <p class="text-muted">Monitor students to be punctual</p>
+                    <a href="{{ url_for('login') }}" class="btn btn-success btn-block">Login</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

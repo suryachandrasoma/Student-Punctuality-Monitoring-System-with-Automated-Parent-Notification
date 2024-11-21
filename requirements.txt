@@ -1,0 +1,6 @@
+Flask==2.2.5
+Flask-SQLAlchemy==2.5.1
+Flask-Login==0.6.3
+Flask-Migrate==3.1.0
+pandas==1.5.3  # Older, more widely supported version
+email-validator==2.0.0

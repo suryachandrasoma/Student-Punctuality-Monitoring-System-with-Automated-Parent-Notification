@@ -1,0 +1,75 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">{{ title }}</h2>
+
+    <!-- Date Picker for Calendar Navigation -->
+    <form method="post" class="text-center mb-4">
+        <input type="date" name="selected_date" value="{{ selected_date.isoformat() }}" class="form-control d-inline w-auto">
+        <button type="submit" class="btn btn-primary">View Attendance</button>
+    </form>
+
+    <!-- Department Summary Display -->
+    <div class="row">
+        {% for department, summary in department_summary.items() %}
+            <div class="col-md-3 mb-4">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ department }}</h5>
+                        <p class="card-text">
+                            <button class="btn btn-primary" data-toggle="modal" data-target="#yearlyCountsModal-{{ department }}">
+                                Late Count: {{ summary.count }}
+                            </button>
+                        </p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal for Yearly Counts -->
+            <div class="modal fade" id="yearlyCountsModal-{{ department }}" tabindex="-1" role="dialog" aria-labelledby="yearlyCountsLabel-{{ department }}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                    <div class="modal-content glass-background">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="yearlyCountsLabel-{{ department }}">
+                                Yearly Late Counts - {{ department }}
+                            </h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <ul class="list-group">
+                                {% for year, count in summary.yearly_counts.items() %}
+                                    <li class="list-group-item">
+                                        Year {{ year }}: {{ count }} late students
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+    <!-- Emergency Buttons for Clearing and Loading Data -->
+    <div class="text-center mt-5">
+        <h5 class="text-danger">Emergency Actions</h5>
+        <p class="text-muted">
+            Use these options at the beginning of a new academic year:
+            <br>1. <strong>Clear All Student Data</strong> - This will remove all existing student records. Ensure to delete all late attendance records before clearing.
+            <br>2. <strong>Load New Data</strong> - Load a new CSV file for the updated student list. <strong>Once deleted, data cannot be recovered.</strong>
+        </p>
+        <form method="post" class="d-inline">
+            <button type="submit" name="clear_data" class="btn btn-danger">Clear All Students</button>
+        </form>
+        <a href="{{ url_for('load_students') }}" class="btn btn-warning ml-3">Load New Data</a>
+    </div>
+
+    <!-- Buttons to View All Students and Registered Roles -->
+    <div class="text-center mt-4">
+        <a href="{{ url_for('view_students') }}" class="btn btn-secondary">View All Students</a>
+        <a href="{{ url_for('view_roles') }}" class="btn btn-info ml-3">View Registered Roles</a>
+    </div>
+</div>
+{% endblock %}

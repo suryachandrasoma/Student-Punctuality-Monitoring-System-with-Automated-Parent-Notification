@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+<h2>Register as Faculty</h2>
+<form method="POST" action="{{ url_for('faculty_register') }}">
+    <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required>
+    </div>
+    <div class="mb-3">
+        <label for="department" class="form-label">Department</label>
+        <select class="form-select" id="department" name="department" required>
+            <option value="" disabled selected>Select department</option>
+            <option value="CSE">CSE</option>
+            <option value="ECE">ECE</option>
+            <option value="IT">IT</option>
+            <option value="CSE-DS">CSE-DS</option>
+            <option value="CSE-AIML">CSE-AIML</option>
+            <option value="CS-AIDS">CS-AIDS</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="year" class="form-label">Year</label>
+        <select class="form-select" id="year" name="year" required>
+            <option value="" disabled selected>Select year</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="section" class="form-label">Section</label>
+        <select class="form-select" id="section" name="section" required>
+            <option value="" disabled selected>Select section</option>
+            <option value="A">A</option>
+            <option value="B">B</option>
+            <option value="C">C</option>
+            <option value="D">D</option>
+            <option value="E">E</option>
+            <option value="F">F</option>
+            <option value="G">G</option>
+        </select>
+    </div>
+    <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input type="password" class="form-control" id="password" name="password" required>
+    </div>
+    <button type="submit" class="btn btn-primary">Register</button>
+</form>
+{% endblock %}

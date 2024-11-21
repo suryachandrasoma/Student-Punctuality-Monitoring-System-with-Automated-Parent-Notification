@@ -1,0 +1,85 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center">{{ title }}</h2>
+
+    <!-- Faculty Details -->
+    <h3 class="mt-4">Faculty</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Year</th>
+                <th>Section</th>
+                <th>Password</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for f in faculty %}
+            <tr>
+                <td>{{ f.id }}</td>
+                <td>{{ f.name }}</td>
+                <td>{{ f.department }}</td>
+                <td>{{ f.year }}</td>
+                <td>{{ f.section }}</td>
+                <td>{{ f.password }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Discipline Incharge Details -->
+    <h3 class="mt-4">Discipline Incharge</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+             
+                <th>Password</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for d in discipline_incharge %}
+            <tr>
+                <td>{{ d.id }}</td>
+                <td>{{ d.name }}</td>
+                
+                <td>{{ d.password }}</td>
+                
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- HOD Details -->
+    <h3 class="mt-4">HOD</h3>
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Department</th>
+                <th>Password</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            {% for h in hods %}
+            <tr>
+                <td>{{ h.id }}</td>
+                <td>{{ h.name }}</td>
+                <td>{{ h.department }}</td>
+                <td>{{ h.password }}</td>
+               
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}
